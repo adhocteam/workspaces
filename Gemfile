@@ -20,6 +20,7 @@ gem 'haml-rails'
 gem 'rspec-rails'
 gem 'devise'
 gem 'omniauth-twitter'
+gem 'foundation-rails'
 
 # bundle exec rake doc:rails generates the API under doc/api.
 group :doc do

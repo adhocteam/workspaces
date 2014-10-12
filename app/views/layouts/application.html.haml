@@ -1,21 +1,30 @@
 !!!
-%html
+%html{:lang => "en"}
   %head
-    %title Workspaces
-    = stylesheet_link_tag    'application', media: 'all'
-    = javascript_include_tag 'application'
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %title= content_for?(:title) ? yield(:title) : "Workspaces"
+    = stylesheet_link_tag    "application"
+    = javascript_include_tag "vendor/modernizr"
     = csrf_meta_tags
   %body
-    %h1
-      Workspaces
-    - if current_user
-      Hello, #{current_user.screen_name}
-      |
-      = link_to 'Sign out', destroy_user_session_path
-    - else
-      = link_to 'Sign in with Twitter', user_omniauth_authorize_path('twitter')
-    %p.notice
-      = notice
-    %p.alert
-      = alert
+    .row
+      .small-12.columns
+        %h1
+          Workspaces
+    .row
+      .small-12.columns
+        - if current_user
+          Hello, #{current_user.screen_name}
+          |
+          = link_to 'Sign out', destroy_user_session_path
+        - else
+          = link_to 'Sign in with Twitter', user_omniauth_authorize_path('twitter')
+    .row
+      .small-12.columns
+        %p.notice
+          = notice
+        %p.alert
+          = alert  
     = yield
+    = javascript_include_tag "application"
