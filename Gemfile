@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
+gem 'dotenv-rails', :groups => [:development, :test]
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
@@ -17,6 +18,8 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'haml-rails'
 gem 'rspec-rails'
+gem 'devise'
+gem 'omniauth-twitter'
 
 # bundle exec rake doc:rails generates the API under doc/api.
 group :doc do
@@ -25,7 +28,8 @@ end
 
 group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring',        group: :development
+  gem 'spring'
+  gem 'quiet_assets'
 end
 
 # Use ActiveModel has_secure_password
