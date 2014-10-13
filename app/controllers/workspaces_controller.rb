@@ -11,7 +11,7 @@ class WorkspacesController < ApplicationController
       flash[:notice] = "Workspace created."
       redirect_to @workspace
     else
-      flash[:error] = @workspace.errors
+      flash[:alert] = @workspace.errors
       render :new
     end
   end
@@ -30,7 +30,7 @@ class WorkspacesController < ApplicationController
       flash[:notice] = "Workspace updated."
       redirect_to @workspace
     else
-      flash[:error] = @workspace.errors
+      flash[:alert] = @workspace.errors
       render :edit
     end
   end
