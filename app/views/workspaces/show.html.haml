@@ -1,0 +1,16 @@
+- if current_user && current_user.workspaces.include?(@workspace)
+  .row
+    .small-12.columns
+      = link_to 'Edit Workspace', edit_workspace_path(@workspace)
+      |
+      = link_to 'Delete Workspace', workspace_path(@workspace), method: :delete, data: {confirm: 'Are you sure?'}
+.row
+  .small-12.columns
+    %h3
+      Workspace: #{@workspace.title}
+.row
+  .small-12.columns
+    Company: #{@workspace.company}
+.row
+  .small-12.columns
+    Location: #{@workspace.location}

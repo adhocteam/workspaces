@@ -17,6 +17,8 @@
         - if current_user
           Hello, #{current_user.screen_name}
           |
+          = link_to 'New Workspace', new_workspace_path
+          |
           = link_to 'Sign out', destroy_user_session_path
         - else
           = link_to 'Sign in with Twitter', user_omniauth_authorize_path('twitter')

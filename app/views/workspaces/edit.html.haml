@@ -1,0 +1,9 @@
+.row
+  .small-12.columns
+    %h3
+      Edit Workspace
+.row
+  .small-12.columns
+    = form_for @workspace do |f|
+      = render 'form', f: f
+      = f.submit 'Update Workspace'
