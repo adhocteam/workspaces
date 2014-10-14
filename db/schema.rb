@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141012233357) do
+ActiveRecord::Schema.define(version: 20141014002838) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,18 @@ ActiveRecord::Schema.define(version: 20141012233357) do
   end
 
   add_index "users", ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true, using: :btree
+
+  create_table "workspace_images", force: true do |t|
+    t.integer  "workspace_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  add_index "workspace_images", ["workspace_id"], name: "index_workspace_images_on_workspace_id", using: :btree
 
   create_table "workspaces", force: true do |t|
     t.string   "title"

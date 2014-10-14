@@ -1,0 +1,10 @@
+.row
+  .small-12.columns
+    %h3
+      Add an image of your Workspace
+.row
+  .small-12.columns
+    = form_for [@workspace, @workspace_image] do |f|
+      = f.label :image
+      = f.file_field :image
+      = f.submit 'Upload Workspace Image'
