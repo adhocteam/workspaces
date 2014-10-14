@@ -28,6 +28,5 @@
         .row
           .small-10.columns
             = image_tag workspace_image.image.url(:square)
-        .row
           .small-2.columns
             = link_to 'Delete Image', workspace_workspace_image_path(@workspace, workspace_image), method: :delete, data: {confirm: 'Are you sure?'}
