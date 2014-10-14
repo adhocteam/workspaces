@@ -55,6 +55,7 @@ RSpec.describe "Workspaces" do
         expect(page).to have_content "Location: #{@workspace.location}"
         expect(page).to have_no_link 'Edit Workspace', href: edit_workspace_path(@workspace)
         expect(page).to have_no_link 'Delete Workspace', href: workspace_path(@workspace)
+        expect(page).to have_no_link 'Add new Image to Workspace', href: new_workspace_workspace_image_path(@workspace)
       end
     end
     
@@ -70,6 +71,18 @@ RSpec.describe "Workspaces" do
         expect(page).to have_content "Location: #{@workspace.location}"
         expect(page).to have_link 'Edit Workspace', href: edit_workspace_path(@workspace)
         expect(page).to have_link 'Delete Workspace', href: workspace_path(@workspace)
+        expect(page).to have_link 'Add new Image to Workspace', href: new_workspace_workspace_image_path(@workspace)
+      end
+      
+      context "when the workspace has images" do
+        before do
+          @workspace.workspace_images.create(image_file_name: 'ostp.jpg', image_content_type: 'image/jpg', image_file_size: 68500)
+        end
+        
+        it "should show image management options" do
+          visit workspace_path(@workspace)
+          expect(page).to have_link 'Delete Image', href: workspace_workspace_image_path(@workspace, @workspace.workspace_images.first)
+        end
       end
     end
     
@@ -85,6 +98,7 @@ RSpec.describe "Workspaces" do
         expect(page).to have_content "Location: #{@workspace.location}"
         expect(page).to have_no_link 'Edit Workspace', href: edit_workspace_path(@workspace)
         expect(page).to have_no_link 'Delete Workspace', href: workspace_path(@workspace)
+        expect(page).to have_no_link 'Add new Image to Workspace', href: new_workspace_workspace_image_path(@workspace)
       end
     end
   end

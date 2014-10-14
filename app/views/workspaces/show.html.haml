@@ -18,9 +18,10 @@
   .small-12.columns
     %h4
       Workspace Images
-.row
-  .small-12.columns
-    = link_to 'Add new Image to Workspace', new_workspace_workspace_image_path(@workspace)
+- if current_user && current_user.workspaces.include?(@workspace)
+  .row
+    .small-12.columns
+      = link_to 'Add new Image to Workspace', new_workspace_workspace_image_path(@workspace)
 - if @workspace.workspace_images.any?
   .row
     .small-12.columns
@@ -28,5 +29,6 @@
         .row
           .small-10.columns
             = image_tag workspace_image.image.url(:square)
-          .small-2.columns
-            = link_to 'Delete Image', workspace_workspace_image_path(@workspace, workspace_image), method: :delete, data: {confirm: 'Are you sure?'}
+          - if current_user && current_user.workspaces.include?(@workspace)
+            .small-2.columns
+              = link_to 'Delete Image', workspace_workspace_image_path(@workspace, workspace_image), method: :delete, data: {confirm: 'Are you sure?'}
