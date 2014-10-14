@@ -8,6 +8,36 @@ RSpec.describe "Home page" do
         expect(page).to have_content 'Workspaces'
         expect(page).to have_link 'Sign in with Twitter', href: user_omniauth_authorize_path("twitter")
       end
+      
+      context "when there are workspaces" do
+        before do
+          @workspace = create(:workspace, user: create(:user))
+        end
+        
+        context "but they don't have images" do
+          it "should not show anything on the home page" do
+            visit root_path
+            expect(page).to have_no_content @workspace.title
+            expect(page).to have_no_content @workspace.company
+            expect(page).to have_no_content @workspace.location
+            expect(page).to have_no_content "by #{@workspace.user.screen_name}"
+          end
+        end
+        
+        context "when they do have images" do
+          before do
+            @workspace.workspace_images << build(:workspace_image)
+          end
+          
+          it "should show a random workspace on the home page" do
+            visit root_path
+            expect(page).to have_content @workspace.title
+            expect(page).to have_content @workspace.company
+            expect(page).to have_content @workspace.location
+            expect(page).to have_content "by #{@workspace.user.screen_name}"
+          end
+        end
+      end      
     end
     
     context "when the user is logged in" do

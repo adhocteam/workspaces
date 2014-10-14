@@ -1,0 +1,15 @@
+- if @workspace
+  .row
+    .small-10.small-centered.columns
+      %h3{:style => 'text-align: center;'}
+        #{link_to @workspace.title, workspace_path(@workspace)} at #{@workspace.company} in #{@workspace.location}
+  .row
+    .small-10.small-centered.columns
+      %div{:style => 'text-align: center;'}
+        = link_to workspace_path(@workspace) do
+          = image_tag @workspace.workspace_images.first.image.url(:medium)
+  .row
+    .small-10.small-centered.columns
+      %p{:style => 'text-align: right;'}
+        by #{link_to @workspace.user.screen_name, "https://twitter.com/#{@workspace.user.screen_name}"}
+      
