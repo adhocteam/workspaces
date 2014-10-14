@@ -7,19 +7,41 @@ Things you may want to cover:
 
 * Ruby version
 
+2.0
+
 * System dependencies
+
+You will need to either create a Twitter app at http://dev.twitter.com, or get the credentials from @greggersh.
 
 * Configuration
 
+There are a few files you will need to customize to get started:
+
+1. config/database.yml.example - you should make a copy of this file to config/database.yml, and then run:
+
+2. .env - create this file and make sure to set the variables in config/application.rb and config/initilizers/omniauth.rb
+
 * Database creation
+
+The usual:
+  `rake db:create`
+  `rake db:schema:load`
 
 * Database initialization
 
+See above
+
 * How to run the test suite
+
+`rake spec`
 
 * Services (job queues, cache servers, search engines, etc.)
 
+None.
+
 * Deployment instructions
+
+For now, we are using Heroku (http://workspacesapp.herokuapp.com). Contact @greggersh if you want deployment rights.
 
 * ...
 
