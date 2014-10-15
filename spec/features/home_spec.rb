@@ -7,6 +7,9 @@ RSpec.describe "Home page" do
         visit root_path
         expect(page).to have_content 'Workspaces'
         expect(page).to have_link 'Sign in with Twitter', href: user_omniauth_authorize_path("twitter")
+        expect(page).to have_no_link 'New Workspace'
+        expect(page).to have_no_link 'My Workspaces'
+        expect(page).to have_no_link 'Sign out'
       end
       
       context "when there are workspaces" do
@@ -50,8 +53,9 @@ RSpec.describe "Home page" do
         visit root_path
         expect(page).to have_content 'Workspaces'
         expect(page).to have_content 'Hello, joeworker'
-        expect(page).to have_link 'Sign out', href: destroy_user_session_path
         expect(page).to have_link 'New Workspace', href: new_workspace_path
+        expect(page).to have_link 'My Workspaces', href: workspaces_path
+        expect(page).to have_link 'Sign out', href: destroy_user_session_path
       end
     end
   end

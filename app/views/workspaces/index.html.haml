@@ -1,0 +1,17 @@
+.row
+  .small-12.columns
+    %h3
+      My Workspaces
+- if @workspaces.empty?
+  .row
+    .small-12.columns
+      %p
+        You don't have any Workspaces.
+        = link_to 'Create one', new_workspace_path
+- else
+  .row
+    .small-12.columns
+      %ul
+        - @workspaces.each do |workspace|
+          %li
+            = link_to workspace.title, workspace_path(workspace)

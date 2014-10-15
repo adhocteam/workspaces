@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     get 'sign_out', to: 'devise/sessions#destroy', as: :destroy_user_session
   end
   
-  resources :workspaces, except: [:index] do
+  resources :workspaces do
     resources :workspace_images, only: [:new, :create, :destroy]
   end
   

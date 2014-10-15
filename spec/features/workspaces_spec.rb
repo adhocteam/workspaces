@@ -1,6 +1,45 @@
 require 'rails_helper'
 
 RSpec.describe "Workspaces" do
+  describe "GET /workspaces" do
+    context "when the user is not logged in" do
+      it "should redirect the user to the home page" do
+        visit workspaces_path
+        expect(page).to have_content 'Workspaces'
+        expect(page).to have_content 'You need to sign in or sign up before continuing.'
+      end    
+    end
+    
+    context "when the user is logged in" do
+      before do
+        @user = create(:user)
+        login_as(@user, scope: :user)
+      end
+      
+      context "when the user has no workspaces" do
+        it "should prompt them to create one" do
+          visit workspaces_path
+          expect(page).to have_content "You don't have any Workspaces."
+          expect(page).to have_link "Create one", href: new_workspace_path
+        end
+      end
+      
+      context "when the user does have workspaces" do
+        before do
+          create(:workspace, user: @user)
+          create(:workspace, user: @user, title: "My other office")
+        end
+        
+        it "should list and link to them" do
+          visit workspaces_path
+          expect(page).to have_link @user.workspaces.first.title, href: workspace_path(@user.workspaces.first)
+          expect(page).to have_link @user.workspaces.second.title, href: workspace_path(@user.workspaces.second)
+          expect(page).to have_no_content "You don't have any Workspaces."
+        end
+      end
+    end
+  end
+   
   describe "GET /workspaces/new" do
     context "when the user is not logged in" do
       it "should redirect the user to the home page" do

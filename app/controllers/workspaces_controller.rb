@@ -1,6 +1,10 @@
 class WorkspacesController < ApplicationController
   before_filter :authenticate_user!, except: [:show]
   
+  def index
+    @workspaces = current_user.workspaces
+  end
+  
   def new
     @workspace = Workspace.new
   end
