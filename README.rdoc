@@ -12,7 +12,7 @@
 
   There are a few files you will need to customize to get started:
 
-  1. config/database.yml.example - you should make a copy of this file to config/database.yml, and then run:
+  1. config/database.yml.example - you should make a copy of this file to config/database.yml.
 
   2. .env - create this file and make sure to set the variables in config/application.rb and config/initilizers/omniauth.rb
 
