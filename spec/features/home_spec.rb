@@ -35,6 +35,7 @@ RSpec.describe "Home page" do
             expect(page).to have_content @workspace.company
             expect(page).to have_content @workspace.location
             expect(page).to have_content "by #{@workspace.user.screen_name}"
+            expect(page).to have_link "Another random Workspace", href: root_path
           end
         end
       end      
